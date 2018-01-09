@@ -15,14 +15,17 @@ return [
     ],
 
     'pdo' => [
-        'dns'      => 'mysql:dbname=my-db;host=127.0.0.1;charset=utf8',
+        'dns'      => 'mysql:dbname=sampledb;host=127.0.0.1;charset=utf8',
         'user'     => 'root',
-        'password' => 'root'
+        'password' => '123456'
     ],
 
     'auth' => [
-        'jwtKey' => '6v9d5AN2Ka88E4dr',
+        'jwtKey' => '1234567890ABCDEF',
         'requestAttribute' => 'jwt',
-    ]
+        'relaxed' => ["localhost", "127.0.0.1", "sampleapp.local",] ,
+        'path' => [ "/items"],
+        'passthrough' => ["/", "/auth", "/api/v1/auth"],
+    ],
 
 ];

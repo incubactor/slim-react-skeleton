@@ -12,7 +12,7 @@ import authPropTypes from '../store/propTypes/auth';
 import Root from './Root';
 import Home from './Home';
 import Explore from './Explore';
-import Dashboard from './Dashboard';
+import Items from './Items';
 import Login from './Auth/Login';
 import Logout from './Auth/Logout';
 import Registration from './Auth/Registration';
@@ -30,7 +30,7 @@ class AppRouter extends Component {
             <Route path="/" component={Root}>
                 <IndexRoute component={Home}/>
                 <Route path="/explore" component={Explore}/>
-                <Route path="/dashboard" component={Dashboard}/>
+                <Route path="/items" component={Items} onEnter={this._requireAuth}/>
                 <Route path="/auth/login" component={Login} onEnter={this._requireNotAuth}/>
                 <Route path="/auth/logout" component={Logout} onEnter={this._requireAuth}/>
                 <Route path="/auth/registration" component={Registration} onEnter={this._requireNotAuth}/>
@@ -44,13 +44,13 @@ class AppRouter extends Component {
 
     _requireAuth(nextState, replace) {
         if (!this._isAuth()) {
-            replace('/');
+            replace('/auth/registration');
         }
     }
 
     _requireNotAuth(nextState, replace) {
         if (this._isAuth()) {
-            replace('/');
+            replace('/auth/registration');
         }
     }
 

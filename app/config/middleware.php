@@ -3,7 +3,7 @@
 
 use Slim\Http\Request as Request;
 use Slim\Http\Response as Response;
-
+use Lib\Middleware\JwtIntercept;
 $di = $app->getContainer();
 
 /**

@@ -1,6 +1,6 @@
 <?php
 
-namespace Module\Api\Controller\User;
+namespace Module\Api\Controller\Users;
 
 use Lib\Controller\AbstractController;
 
@@ -15,8 +15,8 @@ class Post extends AbstractController
         ];
         $httpStatusCode = 200;
 
-        /** @var \Model\User $userModel */
-        $userModel = $this->modelFactory->get('user');
+        /** @var \Model\Users $userModel */
+        $userModel = $this->modelFactory->get('users');
         $postParams = $this->request->getParsedBody();
         $data['user'] = $userModel->register($postParams);
 

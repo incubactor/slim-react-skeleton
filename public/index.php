@@ -1,5 +1,4 @@
 <?php
-
 require __DIR__ . '/../vendor/autoload.php';
 $settings = require __DIR__ . '/../app/config/settings.php';
 $di = new SlimAura\Container($settings);

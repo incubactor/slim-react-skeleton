@@ -7,8 +7,6 @@ use Psr\Log\LoggerInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Lib\Model\ModelFactory;
-use Lib\Helper\JwtHelper;
-
 
 abstract class AbstractController implements ControllerInterface
 {
@@ -28,11 +26,6 @@ abstract class AbstractController implements ControllerInterface
      * @var ModelFactory
      */
     protected $modelFactory;
-
-    /**
-     * @var JwtHelper
-     */
-    protected $jwtHelper;
 
     /**
      * @var ResponseInterface
@@ -57,15 +50,13 @@ abstract class AbstractController implements ControllerInterface
         PhpRenderer $viewRenderer,
         LoggerInterface $logger,
         $layoutPath = 'src/layout/',
-        ModelFactory $modelFactory,
-        JwtHelper $jwtHelper
+        ModelFactory $modelFactory
     )
     {
         $this->viewRenderer = $viewRenderer;
         $this->logger = $logger;
         $this->layoutPath = $layoutPath;
         $this->modelFactory = $modelFactory;
-        $this->jwtHelper = $jwtHelper;
         $this->init();
     }
 

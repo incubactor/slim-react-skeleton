@@ -9,7 +9,7 @@ class GetList extends AbstractController
 
     public function execute($args)
     {
-        /** @var \Model\User $userModel */
+        /** @var \Model\Users $userModel */
         $model = $this->modelFactory->get('category');
         return $this->response->withJson($model->getList());
     }

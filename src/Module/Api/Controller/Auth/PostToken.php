@@ -20,9 +20,8 @@ class PostToken extends AbstractController
 
         $postParams = $this->request->getParsedBody();
 
-        /** @var \Model\User $userModel */
-        $userModel = $this->modelFactory->get('user');
-
+        /** @var \Model\Users $userModel */
+        $userModel = $this->modelFactory->get('users');
         if ($user = $userModel->authenticate($postParams['credential'], $postParams['password'])) {
 
             $token = $this->jwtHelper->createToken(['user_id' => $user['id']]);

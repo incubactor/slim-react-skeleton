@@ -18,7 +18,8 @@
         "monolog/monolog": "^1.17",
         "shameerc/slim3-aura-di": "^1.0",
         "tuupola/slim-jwt-auth": "^2.3",
-        "behat/transliterator": "^1.1"
+        "behat/transliterator": "^1.1",
+        "phpunit/phpunit": "^6.5"
     },
 
     "autoload": {

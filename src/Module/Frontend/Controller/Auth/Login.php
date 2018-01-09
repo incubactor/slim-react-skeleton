@@ -4,7 +4,6 @@ namespace Module\Frontend\Controller\Auth;
 
 use Lib\Controller\AbstractController;
 
-
 class Login extends AbstractController
 {
 

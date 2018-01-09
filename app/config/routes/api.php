@@ -7,17 +7,12 @@ use \Psr\Http\Message\ResponseInterface as Response;
 
 $app->group('/api/v1', function () {
 
-
-    /**
-     * AUTHENTICATION
-     */
     $this->post('/auth', 'Module\Api\Controller\Auth\PostToken')->setName('api.auth.token');
 
-    /**
-     * USERS
-     */
-    $this->get('/users', 'Module\Api\Controller\User\GetList')->setName('api.user.list');
+    $this->delete('/auth/{user_id:\d+}', 'Module\Api\Controller\Auth\Logout')->setName('api.auth.logout');
+
     $this->post('/users', 'Module\Api\Controller\User\Post')->setName('api.user.post');
-    $this->get('/users/{id:\d+}', 'Module\Api\Controller\User\Get')->setName('api.user.get');
+    
+    $this->post('/items', 'Module\Api\Controller\Items\Calculate')->setName('api.items.calculate');
 
 });

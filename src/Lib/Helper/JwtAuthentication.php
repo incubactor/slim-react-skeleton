@@ -9,7 +9,7 @@ namespace Lib\Helper;
 
 use Firebase\JWT\JWT;
 
-class JwtHelper
+class JwtAuthentication
 {
     private $_jwtKey;
 
@@ -52,6 +52,7 @@ class JwtHelper
                 (array) $this->algorithm
             );
         } catch (\Exception $exception) {
+            error_log($exception->getMessage());
             return false;
         }
     }

@@ -4,12 +4,16 @@ import { withRouter } from 'react-router';
 
 import authPropTypes from '../../store/propTypes/auth';
 
-import { logoutSuccess } from '../../store/actions/auth/actions';
+//import { logoutSuccess } from '../../store/actions/auth/actions';
+//import { logoutRequest } from '../../store/ations/auth/actions';
+import {logout} from '../../store/actions/auth/thunks';
+
 
 class Logout extends Component {
 
     constructor(props) {
         super(props);
+        this.props.onLogoutRequest(props.auth.user.id);
     }
 
     static propTypes = {
@@ -17,17 +21,11 @@ class Logout extends Component {
         onLogoutRequest: PropTypes.func.isRequired
     };
 
-    /**
-     * Dispatch Request logout before mount
-     */
-    componentWillMount() {
-        this.props.onLogoutRequest();
-    }
-
     componentWillReceiveProps(nextProps) {
-        if (nextProps.auth.isAuthenticated == false) {
+    	if (nextProps.auth.isAuthenticated == false) {
             this.props.router.push('/');
         }
+        
     }
 
     render() {
@@ -47,4 +45,4 @@ const mapStateToProps = (state) => {
     }
 };
 
-export default withRouter(connect(mapStateToProps, { onLogoutRequest: logoutSuccess })(Logout));
+export default withRouter(connect(mapStateToProps, { onLogoutRequest: logout })(Logout));
