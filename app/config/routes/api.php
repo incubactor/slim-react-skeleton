@@ -11,7 +11,7 @@ $app->group('/api/v1', function () {
 
     $this->delete('/auth/{user_id:\d+}', 'Module\Api\Controller\Auth\Logout')->setName('api.auth.logout');
 
-    $this->post('/users', 'Module\Api\Controller\User\Post')->setName('api.user.post');
+    $this->post('/users', 'Module\Api\Controller\Users\Post')->setName('api.user.post');
     
     $this->post('/items', 'Module\Api\Controller\Items\Calculate')->setName('api.items.calculate');
 

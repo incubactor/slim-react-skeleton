@@ -90,7 +90,6 @@ class Users extends AbstractModel
                 $result = $this->getByEmail($user['email']);
             }
         }
-
         return $result;
     }
 

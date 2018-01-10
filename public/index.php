@@ -6,4 +6,5 @@ $app = new \Slim\App($di);
 require __DIR__ . '/../app/config/dependencies.php';
 require __DIR__ . '/../app/config/middleware.php';
 require __DIR__ . '/../app/config/routes.php';
+
 $app->run();

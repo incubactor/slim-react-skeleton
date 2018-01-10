@@ -7,6 +7,8 @@ use Psr\Log\LoggerInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Lib\Model\ModelFactory;
+use Lib\Helper\JwtAuthentication;
+
 
 abstract class AbstractController implements ControllerInterface
 {
@@ -26,6 +28,11 @@ abstract class AbstractController implements ControllerInterface
      * @var ModelFactory
      */
     protected $modelFactory;
+
+    /**
+     * @var JwtAuthentication
+     */
+    protected $jwtHelper;
 
     /**
      * @var ResponseInterface
@@ -50,13 +57,15 @@ abstract class AbstractController implements ControllerInterface
         PhpRenderer $viewRenderer,
         LoggerInterface $logger,
         $layoutPath = 'src/layout/',
-        ModelFactory $modelFactory
+        ModelFactory $modelFactory,
+        JwtAuthentication $jwtHelper
     )
     {
         $this->viewRenderer = $viewRenderer;
         $this->logger = $logger;
         $this->layoutPath = $layoutPath;
         $this->modelFactory = $modelFactory;
+        $this->jwtHelper = $jwtHelper;
         $this->init();
     }
 
@@ -67,8 +76,6 @@ abstract class AbstractController implements ControllerInterface
     {
         $this->layout = $layout;
     }
-
-
 
     /**
      * Callable class.

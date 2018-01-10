@@ -27,5 +27,8 @@ return [
         'path' => [ "/items"],
         'passthrough' => ["/", "/auth", "/api/v1/auth"],
     ],
+    'routes' => [
+        'path' => __DIR__ . '/routes.json',     
+    ]
 
 ];

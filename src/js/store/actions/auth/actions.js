@@ -9,6 +9,13 @@ import * as actionTypes from './types';
 // LOGIN
 //------------------------------
 
+export function loginFail(message) {
+	return {
+		type: actionTypes.LOGIN_FAIL,
+		message: message
+	}
+}
+
 export function loginSuccess(token, user) {
     return {
         type: actionTypes.LOGIN_SUCCESS,

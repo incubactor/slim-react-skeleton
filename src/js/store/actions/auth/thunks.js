@@ -73,9 +73,12 @@ export function register(registrationData) {
             data: {...registrationData},
         })
         .then(function (response) {
-            response.data.success
-                ? dispatch(authActions.registrationSuccess(response.data.user))
-                : dispatch(authActions.registrationFail(response.data.message));
+            if (response.data.success) {
+        		dispatch(authActions.registrationSuccess(response.data.user));
+        		dispatch(authActions.loginSuccess(response.data.token, response.data.user));
+            } else {
+            	dispatch(authActions.registrationFail(response.data.message));
+            }
         })
         .catch(function (error) {
             dispatch(authActions.loginFail('Sorry, try later...'));
@@ -92,14 +95,10 @@ export function register(registrationData) {
  * @returns {function()}
  */
 export function calculateItem(money, itemId) {
-    // console.log('1');
     return (dispatch, getState) => {
-        // console.log('2');
-        // console.log(dispatch);
         if (money) {
 
             dispatch(authActions.itemRequest(money, itemId));
-            // console.log('3');
             return axios({
                 url: 'items',
                 method: 'post',

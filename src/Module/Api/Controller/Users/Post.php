@@ -18,8 +18,11 @@ class Post extends AbstractController
         /** @var \Model\Users $userModel */
         $userModel = $this->modelFactory->get('users');
         $postParams = $this->request->getParsedBody();
-        $data['user'] = $userModel->register($postParams);
-
+        $user = $userModel->register($postParams);
+        $token = $this->jwtHelper->createToken(['user_id' => $user['id']]);
+        $data['token'] = $token;
+        $data['user'] = $user;
+        
         return $this->response->withJson($data, $httpStatusCode);
     }
 

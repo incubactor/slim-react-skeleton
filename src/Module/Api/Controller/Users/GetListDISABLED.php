@@ -4,7 +4,7 @@ namespace Module\Api\Controller\Users;
 
 use Lib\Controller\AbstractController;
 
-class GetList extends AbstractController
+class GetListDISABLED extends AbstractController
 {
 
     public function execute($args)

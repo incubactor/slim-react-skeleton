@@ -11,7 +11,6 @@ use Model\Item\Calculation\Returnable;
 
 class Calculate extends AbstractController
 {
-    
     public function execute($args)
     {
         $httpStatusCode = 200;

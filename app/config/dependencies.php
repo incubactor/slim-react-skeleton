@@ -68,6 +68,12 @@ $di->params[Lib\Model\ModelFactory::class] = [
 
 $di->set('modelFactory', $di->lazyNew('Lib\Model\ModelFactory'));
 
+// JWT
+$di->set('jwtHelper', function () use ($di) {
+    $settings = $di->get('settings')['auth'];
+    return new \Lib\Helper\JwtAuthentication($settings['jwtKey'], $settings['requestAttribute']);
+});
+
 $di->set('jwtMiddleware', function () use ($di, $app) {
     $settings = $di->get('settings')['auth'];
     $jwtAuthentication = new \Slim\Middleware\JwtAuthentication([
