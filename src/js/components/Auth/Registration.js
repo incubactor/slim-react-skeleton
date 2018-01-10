@@ -147,15 +147,5 @@ const mapStateToProps = (state) => {
     }
 };
 
-/*
-const mapDispatchToProps = (dispatch) => {
-
-    return {
-        onRegistrationRequest: (registrationData) => {
-            dispatch(register(registrationData))
-        }
-    }
-};
-*/
 export default withRouter(connect(mapStateToProps, {onRegistrationRequest: register})(Registration));
-//export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Registration));
+
