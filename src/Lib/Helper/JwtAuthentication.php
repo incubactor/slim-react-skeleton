@@ -52,7 +52,6 @@ class JwtAuthentication
                 (array) $this->algorithm
             );
         } catch (\Exception $exception) {
-            error_log($exception->getMessage());
             return false;
         }
     }

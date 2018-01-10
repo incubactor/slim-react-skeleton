@@ -63,8 +63,7 @@ class Users extends AbstractModel
 
     public function logout($userId)
     {
-	error_log("userId:$userId");    
-	$q = 'update ' . $this->table . 
+    	$q = 'update ' . $this->table . 
             ' SET expired = true WHERE id = :id';
         $stm = $this->getDb()->prepare($q);
         $stm->execute([
