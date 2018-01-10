@@ -41,7 +41,7 @@ vendor/bin/phpunit tests
 ###app/config/settings.php
 
 #### Database
-Please create a DB. In order to test our application, import the [sql file](https://github.com/incubactor/slim-react-skeleton/db.sql)
+Please create a DB. In order to test our application, import the [sql file](https://github.com/incubactor/slim-react-skeleton/blob/master/db.sql)
 The add the parameters of the db to app/config/settings.php
 ```
 ...
