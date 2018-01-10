@@ -1,6 +1,6 @@
 <?php
 
-namespace Module\Frontend\Controller\Dashboard;
+namespace Module\Frontend\Controller\Candies;
 
 use Lib\Controller\AbstractController;
 
@@ -12,7 +12,7 @@ class Index extends AbstractController
     {
         /** @var  \Lib\View\Renderer $viewRenderer */
         $viewRenderer = $this->viewRenderer;
-        $viewRenderer->setHeadTitle('Dashboard');
+        $viewRenderer->setHeadTitle('Candies');
 
     }
 

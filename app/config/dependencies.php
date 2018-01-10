@@ -1,4 +1,7 @@
 <?php
+use Model\Item\ItemGateway;
+use Model\Item\ItemFactory;
+
 // DIC configuration
 
 /** @var SlimAura\Container $di */
@@ -54,28 +57,46 @@ $di->params[Lib\Model\AbstractModel::class] = [
     'slugHandler' => \Behat\Transliterator\Transliterator::class
 ];
 
+$di->params['Model\ItemModel']['gateway'] = $di->lazyNew(ItemGateway::class);
+$di->params['Model\ItemModel']['itemFactory'] = $di->lazyNew(ItemFactory::class);
 $di->params[Lib\Model\ModelFactory::class] = [
     'map' => [
-        'user'     => $di->newFactory('Model\User'),
-        'category' => $di->newFactory('Model\Category'),
+        'users'     => $di->newFactory('Model\Users'),
+        'items' =>  $di->newFactory('Model\ItemModel'),
     ],
 ];
+
 $di->set('modelFactory', $di->lazyNew('Lib\Model\ModelFactory'));
 
 // JWT
 $di->set('jwtHelper', function () use ($di) {
     $settings = $di->get('settings')['auth'];
-    return new \Lib\Helper\JwtHelper($settings['jwtKey'], $settings['requestAttribute']);
+    return new \Lib\Helper\JwtAuthentication($settings['jwtKey'], $settings['requestAttribute']);
 });
-$di->params[Lib\Middleware\JwtIntercept::class]['jwtHelper'] = $di->lazyGet('jwtHelper');
-$di->set('jwtMiddleware', $di->lazyNew('Lib\Middleware\JwtIntercept'));
 
+$di->set('jwtMiddleware', function () use ($di, $app) {
+    $settings = $di->get('settings')['auth'];
+    $jwtAuthentication = new \Slim\Middleware\JwtAuthentication([
+      "secret" => $settings['jwtKey'],
+      "path" => $settings['path'],
+      "passthrough" => $settings['passthrough'],
+      "relaxed" => $settings['relaxed'],
+      "error" => function($request, $response, $arguments) use ($di, $app) {
+        $redirectUrl = $di->get('router')->pathFor('frontend.auth.registration');
+        $redirectUrl = 'http://sampleapp.local/auth/registration';
+        return $response->withRedirect($redirectUrl, 303);
+      }
+    ]);
+    return $jwtAuthentication;
+    //return new \Lib\Middleware\JwtIntercept($jwtAuthentication);
 
+});
 // -----------------------------------------------------------------------------
 // Controller factories
 // -----------------------------------------------------------------------------
 
 $di->set('layoutSetting', function () use ($di) {
+            
     return $di->get('settings')['view']['layoutPath'];
 });
 

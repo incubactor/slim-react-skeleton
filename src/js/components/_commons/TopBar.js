@@ -27,7 +27,7 @@ class TopBar extends Component {
                 <ul className="pure-menu-list">
                     <li className="pure-menu-item">
                         <Link activeClassName="pure-menu-selected" className="pure-menu-link"
-                              to="/dashboard">Dashboard</Link>
+                              to="/items">Candies</Link>
                     </li>
                     <li className="pure-menu-item">
                         <Link activeClassName="pure-menu-selected" className="pure-menu-link"

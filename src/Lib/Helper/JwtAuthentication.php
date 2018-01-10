@@ -9,7 +9,7 @@ namespace Lib\Helper;
 
 use Firebase\JWT\JWT;
 
-class JwtHelper
+class JwtAuthentication
 {
     private $_jwtKey;
 

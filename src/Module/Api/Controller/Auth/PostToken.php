@@ -9,7 +9,6 @@ use Firebase\JWT\JWT;
 
 class PostToken extends AbstractController
 {
-
     public function execute($args)
     {
         $data = [
@@ -20,15 +19,12 @@ class PostToken extends AbstractController
 
         $postParams = $this->request->getParsedBody();
 
-        /** @var \Model\User $userModel */
-        $userModel = $this->modelFactory->get('user');
-
+        /** @var \Model\Users $userModel */
+        $userModel = $this->modelFactory->get('users');
         if ($user = $userModel->authenticate($postParams['credential'], $postParams['password'])) {
-
             $token = $this->jwtHelper->createToken(['user_id' => $user['id']]);
             $data['token'] = $token;
             $data['user'] = $user;
-
         } else {
             $httpStatusCode = 400;
             $data['success'] = false;

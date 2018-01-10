@@ -3,7 +3,7 @@
  */
 import React, { Component } from 'react';
 
-import TopBar from './_commons/topBar';
+import TopBar from './_commons/TopBar';
 
 
 export default class Root extends Component {

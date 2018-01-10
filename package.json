@@ -27,10 +27,10 @@
     "react-redux": "^4.4.2",
     "react-router": "^2.0.1",
     "redux": "^3.4.0",
-    "redux-logger": "^2.6.1",
     "redux-thunk": "^2.1.0",
     "reselect": "^2.3.0",
-    "webpack": "^1.13.1"
+    "webpack": "^1.13.1",
+    "babel-core": "^6.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^6.3.7",

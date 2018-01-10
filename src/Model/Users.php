@@ -10,10 +10,10 @@ namespace Model;
 use Aura\Di\Exception;
 use Lib\Model\AbstractModel;
 
-class User extends AbstractModel
+class Users extends AbstractModel
 {
 
-    protected $table = 'user';
+    protected $table = 'users';
 
     protected $fieldSet = [
         'id',
@@ -61,7 +61,16 @@ class User extends AbstractModel
         return $stmt->fetch();
     }
 
-
+    public function logout($userId)
+    {
+    	$q = 'update ' . $this->table . 
+            ' SET expired = true WHERE id = :id';
+        $stm = $this->getDb()->prepare($q);
+        $stm->execute([
+            'id' => $userId,
+        ]);
+    }
+    
     public function authenticate($credential, $password)
     {
         $result = null;
@@ -80,7 +89,6 @@ class User extends AbstractModel
                 $result = $this->getByEmail($user['email']);
             }
         }
-
         return $result;
     }
 
@@ -111,7 +119,7 @@ class User extends AbstractModel
         $field = '`' . implode('`,`', array_keys($fields)) . '`';
         $values = implode(",", $fields);
 
-        $q = "INSERT INTO `user` ($field) VALUES ($values)";
+        $q = "INSERT INTO `users` ($field) VALUES ($values)";
 
         $this->getDb()->exec($q);
 

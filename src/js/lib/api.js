@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-axios.defaults.baseURL = 'http://example.com/api/v1/';
+axios.defaults.baseURL = 'http://sampleapp.local/api/v1/';
 axios.defaults.timeout = 20000;
 axios.defaults.responseType = 'json';
 axios.defaults.validateStatus = function (status) {
