@@ -3,11 +3,12 @@
 namespace Module\Api\Controller\Users;
 
 use Lib\Controller\AbstractController;
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 
 class Post extends AbstractController
 {
-
-    public function execute($args)
+    public function execute(RequestInterface $request, ResponseInterface $response, $params)
     {
         $data = [
             'success' => true,
@@ -17,13 +18,13 @@ class Post extends AbstractController
 
         /** @var \Model\Users $userModel */
         $userModel = $this->modelFactory->get('users');
-        $postParams = $this->request->getParsedBody();
+        $postParams = $request->getParsedBody();
         $user = $userModel->register($postParams);
         $token = $this->jwtHelper->createToken(['user_id' => $user['id']]);
         $data['token'] = $token;
         $data['user'] = $user;
         
-        return $this->response->withJson($data, $httpStatusCode);
+        return $response->withJson($data, $httpStatusCode);
     }
 
 }

@@ -1,18 +1,13 @@
 import React, {Component, PropTypes} from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-
 import authPropTypes from '../../store/propTypes/auth';
-
-//import { logoutSuccess } from '../../store/actions/auth/actions';
-//import { logoutRequest } from '../../store/ations/auth/actions';
 import {logout} from '../../store/actions/auth/thunks';
-
 
 class Logout extends Component {
 
     constructor(props) {
-        super(props);
+    	super(props);
         this.props.onLogoutRequest(props.auth.user.id);
     }
 

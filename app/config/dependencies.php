@@ -88,8 +88,6 @@ $di->set('jwtMiddleware', function () use ($di, $app) {
       }
     ]);
     return $jwtAuthentication;
-    //return new \Lib\Middleware\JwtIntercept($jwtAuthentication);
-
 });
 // -----------------------------------------------------------------------------
 // Controller factories
@@ -108,4 +106,22 @@ $di->params[Lib\Controller\AbstractController::class] = [
     'jwtHelper'    => $di->lazyGet('jwtHelper'),
 ];
 
+//inject all the CommandHandlers
+$commandHandlers = [
+    //api command handlers
+    'api.auth.token' => 'Module\Api\Controller\Auth\PostToken',
+    'api.auth.logout' => 'Module\Api\Controller\Auth\Logout',
+    'api.user.post' => 'Module\Api\Controller\Users\Post',
+    'api.items.calculate' => 'Module\Api\Controller\Items\Calculate',
+    //frontend command handlers
+    'frontend.home.index' => 'Module\Frontend\Controller\Home\Index',
+    'frontend.explore.index' => 'Module\Frontend\Controller\Explore\Index',
+    'frontend.items.index' => 'Module\Frontend\Controller\Items\Index',
+    'frontend.auth.login' => 'Module\Frontend\Controller\Auth\Login',
+    'frontend.auth.logout' => 'Module\Frontend\Controller\Auth\Logout',
+    'frontend.auth.registration' => 'Module\Frontend\Controller\Auth\Registration',
+];
 
+foreach ($commandHandlers as $name => $handler) {
+    $di->set($name, $di->lazyNew($handler));
+}

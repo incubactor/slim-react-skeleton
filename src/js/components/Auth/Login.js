@@ -3,14 +3,12 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
 
 import authPropTypes from '../../store/propTypes/auth';
-
-
 import {login} from '../../store/actions/auth/thunks';
+import FormError from '../_commons/FormError';
 
 class Login extends Component {
 
     constructor(props) {
-
         super(props);
         this._onChangeCredential = this._onChangeCredential.bind(this);
         this._onChangePassword = this._onChangePassword.bind(this);
@@ -22,11 +20,6 @@ class Login extends Component {
             hasChange: true,
             hasError: false,
             canValidate: true,
-            errorMessage: {
-                credential: '',
-                password: '',
-                global: ''
-            }
         }
     }
 
@@ -42,11 +35,11 @@ class Login extends Component {
     }
 
     render() {
-
         return (
             <div>
                 <h1>Login</h1>
                 <div className="pure-form">
+                   <FormError errors={this.props.auth.errors} />
                     <div>
                         <label htmlFor="credential">E-mail (ou user name): </label>
                         <input name="credential"

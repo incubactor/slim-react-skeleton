@@ -49,7 +49,7 @@ export function login(credential, password) {
                 },
             })
             .then(function (response) {
-                response.data.success
+            	response.data.success
                     ? dispatch(authActions.loginSuccess(response.data.token, response.data.user))
                     : dispatch(authActions.loginFail(response.data.message));
             })

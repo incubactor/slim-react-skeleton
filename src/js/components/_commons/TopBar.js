@@ -22,7 +22,7 @@ class TopBar extends Component {
 
     _getLink() {
 
-        if (this.props.isAuthenticated) {
+        if (this.props.isAuthenticated && this.props.user && this.props.token) {
             return (
                 <ul className="pure-menu-list">
                     <li className="pure-menu-item">

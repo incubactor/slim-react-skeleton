@@ -4,11 +4,15 @@
 
 import React, {Component, PropTypes} from 'react';
 
-const FormError = (props) => {
-    return (
-        <p>{props.message}</p>
-    )
-};
+const FormError = ({errors}) => (
+		errors ?  
+		  <div>
+		    {errors.map((error, index) => (
+		      <div className="error" key={index}>{error}</div>
+		    ))}
+		  </div>
+		: <div></div>
+		); 
 
 FormError.propTypes = {message: React.PropTypes.string};
 

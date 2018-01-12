@@ -2,19 +2,20 @@
 
 namespace Module\Api\Controller\Items;
 
-use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Lib\Controller\AbstractController;
-use Firebase\JWT\JWT;
 use Model\Item\Calculation\DefaultCalculation;
 use Model\Item\Calculation\Returnable;
+use Dispatcher\Swagger\CommandHandler;
+use Psr\Http\Message\RequestInterface;
 
 class Calculate extends AbstractController
+implements CommandHandler
 {
-    public function execute($args)
+    public function execute(RequestInterface $request, ResponseInterface $response, $params)
     {
         $httpStatusCode = 200;
-        $postParams = $this->request->getParsedBody();
+        $postParams = $request->getParsedBody();
         $token = $this->jwtHelper->getRequestAttribute();
         /** @var \Model\ItemModel $itemModel */
         if (isset($postParams['money']) && isset($postParams['itemId'])) {
@@ -38,7 +39,7 @@ class Calculate extends AbstractController
             ];
         }
         
-        return $this->response->withJson($data, $httpStatusCode);
+        return $response->withJson($data, $httpStatusCode);
     }
 
 }
