@@ -12,7 +12,7 @@ class ModelFactory
 {
     // a map of model names to factory closures
     protected $map = [];
-
+    
     public function __construct($map = [])
     {
         $this->map = $map;

@@ -1,0 +1,258 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Here it will go the description of your application.You can edit your\nspecification on here http://editor.swagger.io/. Your API could be exposed\nalso on the same plattform.\n",
+    "version": "1.0.0",
+    "title": "Hello world",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "virgilio@posteo.de"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "tags": [
+    {
+      "name": "framework"
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "tags": [
+          "homepage",
+          "page"
+        ],
+        "summary": "Homepage",
+        "description": "Points to the home page of the application",
+        "operationId": "frontend.home.index",
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Invalid Greeting Suplied"
+          },
+          "404": {
+            "description": "Resource not found"
+          }
+        }
+      }
+    },
+    "/explore": {
+      "get": {
+        "tags": [
+          "explore",
+          "page"
+        ],
+        "summary": "Its just a sample of a non token based page.",
+        "description": "There is no need to be logged in in order to point to that page",
+        "operationId": "frontend.explore.index",
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Invalid Greeting Suplied"
+          },
+          "404": {
+            "description": "Resource not found"
+          }
+        }
+      }
+    },
+    "/items": {
+      "get": {
+        "tags": [
+          "items",
+          "page"
+        ],
+        "summary": "Item calculation page. Token based.",
+        "description": "Currently we just have Candies in the inventory but those can be easily expanded by adding to the ItemGateway. If you're logged you'll be able to calculate the number of Items you can get with some amount of money.",
+        "operationId": "frontend.items.index",
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Invalid Greeting Suplied"
+          },
+          "404": {
+            "description": "Resource not found"
+          }
+        }
+      }
+    },
+    "/auth/login": {
+      "get": {
+        "tags": [
+          "login",
+          "page"
+        ],
+        "summary": "Login page.",
+        "description": "This is where the user can identify himself by inserting his credentials.",
+        "operationId": "frontend.auth.login",
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Invalid Greeting Suplied"
+          },
+          "404": {
+            "description": "Resource not found"
+          }
+        }
+      }
+    },
+    "/auth/logout": {
+      "get": {
+        "tags": [
+          "logout",
+          "page"
+        ],
+        "summary": "Logout page. Token based.",
+        "description": "This is where the user can logout himself",
+        "operationId": "frontend.auth.logout",
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Invalid Greeting Suplied"
+          },
+          "404": {
+            "description": "Resource not found"
+          }
+        }
+      }
+    },
+    "/auth/registration": {
+      "get": {
+        "tags": [
+          "registration",
+          "page"
+        ],
+        "summary": "Registration page",
+        "description": "This is where the user can create a valid pair of credentials used in a latter moment for logging in",
+        "operationId": "frontend.auth.registration",
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Invalid Greeting Suplied"
+          },
+          "404": {
+            "description": "Resource not found"
+          }
+        }
+      }
+    },
+    "/api/v1/auth": {
+      "post": {
+        "tags": [
+          "authentication",
+          "api"
+        ],
+        "summary": "authentication api method",
+        "description": "validate user credentials and eventually return a valid token",
+        "operationId": "api.auth.token",
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Invalid Greeting Suplied"
+          },
+          "404": {
+            "description": "Resource not found"
+          }
+        }
+      }
+    },
+    "/api/v1/auth/{user_id}": {
+      "delete": {
+        "tags": [
+          "logout",
+          "api"
+        ],
+        "summary": "logout",
+        "description": "provide to the logout of the user",
+        "operationId": "api.auth.logout",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "ID of the authenticated user which request logout",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Invalid Greeting Suplied"
+          },
+          "404": {
+            "description": "Resource not found"
+          }
+        }
+      }
+    },
+    "/api/v1/users": {
+      "post": {
+        "tags": [
+          "registration",
+          "api"
+        ],
+        "summary": "registation api method.",
+        "description": "registrate a new user and return a valid token",
+        "operationId": "api.user.post",
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Invalid Greeting Suplied"
+          },
+          "404": {
+            "description": "Resource not found"
+          }
+        }
+      }
+    },
+    "/api/v1/items": {
+      "post": {
+        "tags": [
+          "items",
+          "api"
+        ],
+        "summary": "item calculation method.",
+        "description": "calculate the amount of buyable items with a specified amount of money",
+        "operationId": "api.items.calculate",
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Invalid Greeting Suplied"
+          },
+          "404": {
+            "description": "Resource not found"
+          }
+        }
+      }
+    }
+  },
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "host": "sampleapp.local"
+}

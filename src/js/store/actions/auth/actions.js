@@ -10,17 +10,18 @@ import * as actionTypes from './types';
 //------------------------------
 
 export function loginFail(message) {
-	return {
-		type: actionTypes.LOGIN_FAIL,
-		message: message
-	}
+    return {
+        type: actionTypes.LOGIN_FAILURE,
+        errors: [message]
+    }
 }
 
 export function loginSuccess(token, user) {
     return {
         type: actionTypes.LOGIN_SUCCESS,
         token: token,
-        user: user
+        user: user,
+        errors: []
     }
 }
 
@@ -28,22 +29,34 @@ export function loginRequest(credential, password) {
     return {
         type: actionTypes.LOGIN_REQUEST,
         credential: credential,
-        password: password
+        password: password,
+        errors: []
     }
 }
 
+//------------------------------
+// LOGOUT
+//------------------------------
+
 export function logoutRequest(userId) {
-	return {
+    return {
 		type: actionTypes.LOGOUT_REQUEST,
-		userId: userId
-	}
+		userId: userId,
+		errors: []
+    }
 }
 
 export function logoutFail(message) {
-	return {
+    return {
 		type: actionTypes.LOGOUT_FAIL,
-		message: message
-	}
+		errors: [message]
+    }
+}
+
+export function logoutSuccess() {
+    return {
+        type: actionTypes.LOGOUT_SUCCESS
+    }
 }
 
 //------------------------------
@@ -66,19 +79,10 @@ export function itemSuccess(items) {
 export function itemFail(message) {
     return {
         type: actionTypes.ITEM_FAILURE,
-        message: message
+        errors: [message]
     }
 }
 
-//------------------------------
-// LOGOUT
-//------------------------------
-
-export function logoutSuccess() {
-    return {
-        type: actionTypes.LOGOUT_SUCCESS
-    }
-}
 
 
 //------------------------------
@@ -103,7 +107,7 @@ export function registrationRequest(registrationData) {
 export function registrationFail(message) {
     return {
         type: actionTypes.REGISTRATION_FAILURE,
-        message: message
+        errors: [message]
     }
 }
 

@@ -5,17 +5,20 @@
 import * as authActionTypes from '../actions/auth/types'
 
 const initialState = {
-	    isAuthenticated: false,
-	    user: {},
-	    token: '',
-	    errors: []
+    isAuthenticated: false,
+    user: {},
+    token: '',
+    errors: []
 }
 
 export default function auth(state = initialState, action) {
-
     switch (action.type) {
         case authActionTypes.LOGIN_REQUEST:
-            return Object.assign({}, state, initialState);
+            return Object.assign(
+	        {},
+	        state,
+	        initialState
+	    );
 
         case authActionTypes.LOGIN_SUCCESS:
             return Object.assign({}, state, {
@@ -26,20 +29,37 @@ export default function auth(state = initialState, action) {
             });
 
         case authActionTypes.LOGIN_FAILURE:
-            return Object.assign({}, state, {
+        	return Object.assign({}, state, {
                 isAuthenticated: false,
                 user: {},
                 token:'',
-                errors: [action.message]
+                errors: action.errors
             });
 
         case authActionTypes.LOGOUT_SUCCESS:
-            return Object.assign({}, state, initialState);
+            return Object.assign(
+        	        {},
+        	        initialState
+        	    );
+
+        case authActionTypes.LOGOUT_REQUEST:
+            return Object.assign(
+        	        {},
+        	        initialState
+        	    );
+        
+        case authActionTypes.LOGOUT_FAIL:
+            return Object.assign(
+        	        {},
+        	        initialState
+        	    );
+             
         case authActionTypes.ITEM_SUCCESS:
-            console.log(state);
+        	console.log(state);
             return Object.assign({}, state, {
                 items: action.items.items
-            });
+           });
+            ;
         case authActionTypes.ITEM_FAILURE:
             return Object.assign({}, state, initialState);
 

@@ -8,9 +8,10 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Lib\Model\ModelFactory;
 use Lib\Helper\JwtAuthentication;
+use Psr\Http\Message\RequestInterface;
+use Dispatcher\Swagger\CommandHandler;
 
-
-abstract class AbstractController implements ControllerInterface
+abstract class AbstractController implements CommandHandler
 {
     /**
      * Injected
@@ -34,24 +35,11 @@ abstract class AbstractController implements ControllerInterface
      */
     protected $jwtHelper;
 
-    /**
-     * @var ResponseInterface
-     */
-    public $response;
-
-    /**
-     * @var ServerRequestInterface
-     */
-    protected $request;
-
-
     protected $layout = 'layout.phtml';
 
     protected $layoutPath;
 
     private $renderLayout = true;
-
-
 
     public function __construct(
         PhpRenderer $viewRenderer,
@@ -66,30 +54,11 @@ abstract class AbstractController implements ControllerInterface
         $this->layoutPath = $layoutPath;
         $this->modelFactory = $modelFactory;
         $this->jwtHelper = $jwtHelper;
-        $this->init();
     }
-
-    protected function init() {}
-
 
     protected function setLayout($layout)
     {
         $this->layout = $layout;
-    }
-
-    /**
-     * Callable class.
-     * Entry point. Call execute method from parent Controller
-     *
-     * @param ServerRequestInterface $request
-     * @param ResponseInterface $response
-     * @param $args route arguments.
-     */
-    public function __invoke(ServerRequestInterface $request, ResponseInterface $response, $args)
-    {
-        $this->request = $request;
-        $this->response = $response;
-        return $this->execute($args);
     }
 
     /**
@@ -98,8 +67,9 @@ abstract class AbstractController implements ControllerInterface
      * @param string $viewTemplate
      * @return ResponseInterface
      */
-    public function render($viewTemplate = '')
+    public function render(RequestInterface $request, ResponseInterface $response, $args, $viewTemplate = '')
     {
+        //MAYBE the viewTemplate can be added to the args
         if (empty($viewTemplate)) {
             $viewTemplate = $this->_getTemplateViewPath();
         }
@@ -110,9 +80,9 @@ abstract class AbstractController implements ControllerInterface
             $viewAttributes['content'] = $actionContent;
             $this->viewRenderer->setAttributes($viewAttributes);
             // Render layout
-            return $this->viewRenderer->render($this->response, $this->getLayoutFile());
+            return $this->viewRenderer->render($response, $this->getLayoutFile());
         } else {
-            return $this->viewRenderer->render($this->response, $viewTemplate);
+            return $this->viewRenderer->render($response, $viewTemplate);
         }
     }
 
