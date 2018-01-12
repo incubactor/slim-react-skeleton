@@ -1,4 +1,4 @@
-# Slim Framework 3 Skeleton Application + ReactJs
+# Slim Framework 3 Skeleton Application + ReactJs + OpenApi
 
 This skeleton is a fork and contain ideas from those repos:
 
@@ -7,13 +7,16 @@ This skeleton is a fork and contain ideas from those repos:
 * [https://github.com/akrabat/slim3-skeleton](https://github.com/akrabat/slim3-skeleton)
 
 
+## Api upfront Design
+
+The whole application interface is described in this [OpenAPI document](https://app.swaggerhub.com/apis/virgiliolino/slim-react-skeleton/1.0.0). There is no manual routes coding. Just a Json or Yaml file that describes how either frontend and the API should behave. The componend [Swagger-Dispatcher](https://packagist.org/packages/dispatcher/swagger-dispatcher) will take care of automatically building all the routes needed. Of course, because of dependency injection, you'll have to inject all the Command Handlers.
+
 ## Install
 
 ### Slim 3
 ```
 composer install
 ```
-
 
 ### Webpack + ReactJs + Karma
 
