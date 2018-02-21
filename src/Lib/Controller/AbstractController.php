@@ -11,7 +11,7 @@ use Lib\Helper\JwtAuthentication;
 use Psr\Http\Message\RequestInterface;
 use Dispatcher\Swagger\CommandHandler;
 
-abstract class AbstractController implements CommandHandler
+abstract class AbstractController
 {
     /**
      * Injected

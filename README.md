@@ -22,6 +22,10 @@ composer install
 
 Installation :
 
+Please consider that the host is hard-coded in a couple of parts of the code. Corrently the value is sampleapp.local,
+you should need to update this value to the one used by you. Its planned to parametrize it in a way that could be used
+the host specified in the swagger file.
+
 ```
 npm install
 ```

@@ -254,5 +254,5 @@
     "https",
     "http"
   ],
-  "host": "sampleapp.local"
+  "host": "localhost:8888"
 }

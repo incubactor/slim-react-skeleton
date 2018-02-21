@@ -83,7 +83,7 @@ $di->set('jwtMiddleware', function () use ($di, $app) {
       "relaxed" => $settings['relaxed'],
       "error" => function($request, $response, $arguments) use ($di, $app) {
         $redirectUrl = $di->get('router')->pathFor('frontend.auth.registration');
-        $redirectUrl = 'http://sampleapp.local/auth/registration';
+        $redirectUrl = 'http://localhost:8888/auth/registration';
         return $response->withRedirect($redirectUrl, 303);
       }
     ]);

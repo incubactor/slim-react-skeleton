@@ -23,7 +23,7 @@ return [
     'auth' => [
         'jwtKey' => '1234567890ABCDEF',
         'requestAttribute' => 'jwt',
-        'relaxed' => ["localhost", "127.0.0.1", "sampleapp.local",] ,
+        'relaxed' => ["localhost", "127.0.0.1", "localhost:8888",] ,
         'path' => [ "/items"],
         'passthrough' => ["/", "/auth", "/api/v1/auth"],
     ],
